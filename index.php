@@ -6,7 +6,7 @@ session_start();
 // $_SESSION["username"] = $username;
 
 require './config.php';
-require './api/auth.php';
+// require './api/auth.php';
 
 ?>
 
@@ -19,7 +19,6 @@ require './api/auth.php';
 
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <link rel="stylesheet" type="text/css" href="/css/login.css">
-    <?php include 'register.php' ?>
 
     <title>Microblog</title>
 </head>
@@ -27,7 +26,9 @@ require './api/auth.php';
 
 <?php
     if(!isset($_SESSION["user_id"])){
-        include './register.php';
+        // var_dump($_SESSION["user_id"]);
+        header('./register.php');
+        exit;
     } else {
         include './login.php';
     }
