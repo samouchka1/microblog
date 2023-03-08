@@ -2,9 +2,6 @@
 
 session_start();
 
-// $_SESSION["user_id"] = $id;
-// $_SESSION["username"] = $username;
-
 require './config.php';
 
 ?>
@@ -17,7 +14,7 @@ require './config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="/css/index.css">
-    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/css/login-register.css">
 
     <title>Microblog</title>
 </head>

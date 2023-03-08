@@ -1,11 +1,11 @@
-.login-container {
+.login-container, .register-container {
     width: 100%;
     box-sizing: border-box;
     display: block;
     margin: auto;
 }
 
-.login-wrapper {
+.login-wrapper, .register-wrapper {
     width: 100%;
     max-width: 320px;
     margin: 100px auto;
@@ -13,7 +13,7 @@
     padding: 10px;
 }
 
-.login-form-styles {
+.login-form-styles, .register-form-styles {
     padding: 10px;
 }
 

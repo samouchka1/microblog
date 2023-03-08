@@ -2,9 +2,9 @@
 
     session_start();
 
-    if(!isset($_SESSION["user_id"])) {
-        echo "Not authorized.";
-        header('./index.php');
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+        header("location: index.php");
+        exit;
     }
 
 ?>
@@ -16,6 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
     <link rel="stylesheet" type="text/css" href="/css/page.css">
 
     <title>Microblog - Home</title>

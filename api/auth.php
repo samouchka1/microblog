@@ -19,6 +19,7 @@ if($result->num_rows == 1) {
   if(password_verify($password, $hashed_password)) {
     $_SESSION["user_id"] = $id;
     $_SESSION["username"] = $username;
+    $_SESSION["loggedin"] = true;
 
     echo json_encode(array('success' => true));
   } else {

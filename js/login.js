@@ -1,10 +1,10 @@
-const form = document.querySelector('#login-form');
-form.addEventListener('submit', loginUser);
+const loginForm = document.querySelector('#login-form');
+loginForm.addEventListener('submit', loginUser);
 
 async function loginUser(event) {
   event.preventDefault();
 
-  const formData = new FormData(form);
+  const formData = new FormData(loginForm);
   const username = formData.get('username');
   const password = formData.get('password');
 
