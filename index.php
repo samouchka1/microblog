@@ -1,23 +1,15 @@
 <?php
-// Initialize the session
+
 session_start();
 
 // $_SESSION["user_id"] = $id;
 // $_SESSION["username"] = $username;
 
 require './config.php';
-
-require './register.php';
-
-$html = "";
- 
-// Check if the user is already logged in, if yes then redirect him to welcome page
-// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    $html = str_ireplace("{register}", getRegister(), $html);
-// }
-
+require './api/auth.php';
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +25,13 @@ $html = "";
 </head>
 <body>
 
-    {register}
+<?php
+    if(!isset($_SESSION["user_id"])){
+        include './register.php';
+    } else {
+        include './login.php';
+    }
+?>
 
     <script src="/js/login.js"></script>
 
