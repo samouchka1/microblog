@@ -6,7 +6,6 @@ session_start();
 // $_SESSION["username"] = $username;
 
 require './config.php';
-// require './api/auth.php';
 
 ?>
 
@@ -24,16 +23,7 @@ require './config.php';
 </head>
 <body>
 
-<?php
-    if(!isset($_SESSION["user_id"])){
-        // var_dump($_SESSION["user_id"]);
-        header('./register.php');
-        exit;
-    } else {
-        include './login.php';
-    }
-?>
-
+    <?php include './login.php';?>
     <script src="/js/login.js"></script>
 
 </body>

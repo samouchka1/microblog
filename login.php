@@ -18,7 +18,7 @@
         </form>
         <div style="margin: 10px;">
             <p style="margin: 0;"> Not a member?</p>
-            <a style="text-decoration: none;" href="../components/register.php">Register</a>
+            <a style="text-decoration: none;" href="./register.php">Register</a>
         </div>
     </div>
 </div>
