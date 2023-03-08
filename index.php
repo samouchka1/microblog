@@ -24,7 +24,7 @@ require './config.php';
 <body>
 
     <?php include './login.php';?>
-    <script src="/js/login.js"></script>
 
+    <script src="/js/login.js"></script>
 </body>
 </html>

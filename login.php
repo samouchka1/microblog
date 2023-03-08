@@ -14,7 +14,7 @@
             <div class="input-area-styles">
                 <input type="submit" value="Login">
             </div>
-            <div id="response"></div>
+            <div id="response" style="margin: 16px 0;"></div>
         </form>
         <div style="margin: 10px;">
             <p style="margin: 0;"> Not a member?</p>

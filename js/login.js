@@ -7,8 +7,6 @@ async function loginUser(event) {
   const formData = new FormData(form);
   const username = formData.get('username');
   const password = formData.get('password');
-  
-  console.log(username);
 
   const responseDiv = document.querySelector('#response');
 
@@ -24,7 +22,7 @@ async function loginUser(event) {
 
   if (data.success) {
     console.log(data.success);
-    responseDiv.textContent = 'Thanks for signing up!';
+    window.location.href = '../page.php';
   } else { 
     console.log(data.message);
     responseDiv.textContent = 'Username and email not found.';

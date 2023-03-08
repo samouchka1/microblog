@@ -5,9 +5,9 @@ $username = "root";
 $password = "";
 $dbname = "microblog";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$mysqli = mysqli_connect($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {
+if ($mysqli->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
