@@ -6,6 +6,16 @@ $input_data = json_decode(file_get_contents('php://input'));
 $username = $input_data->username;
 $password = $input_data->password;
 
+//validate data
+$username = test_input($username);
+$password = test_input($password);
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
 $sql = "SELECT id, username, password FROM users WHERE username = '$username'";
 
 $result = mysqli_query($mysqli, $sql);

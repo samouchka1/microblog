@@ -2,7 +2,6 @@ const regForm = document.querySelector('#register-form');
 regForm.addEventListener('submit', registerUser);
 const responseDiv = document.querySelector('#response');
 
-
 async function registerUser(event) {
   event.preventDefault();
 
@@ -11,17 +10,13 @@ async function registerUser(event) {
   const password = formData.get('password');
   const confirmPassword = formData.get('confirm_password');
 
-  if (password !== confirmPassword) {
-    responseDiv.textContent = 'Password does not match.';
-  }
-
   const response = await fetch('/api/register.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password }),
+    body: JSON.stringify({ username, password, confirmPassword }),
   });
 
-  const data = await response.json();
+  const data = await response.json(); 
 
   if (data.success) {
     console.log(data.success);
