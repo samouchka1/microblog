@@ -18,8 +18,6 @@ async function loginUser(event) {
 
   const data = await response.json();
 
-  console.log(data);
-
   if (data.success) {
     console.log(data.success);
     window.location.href = '../page.php';
