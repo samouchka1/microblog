@@ -5,39 +5,38 @@ require "../config.php";
 $input_data = json_decode(file_get_contents('php://input'));
 $username = $input_data->username;
 $password = $input_data->password;
-// $confirm_password = $input_data->confirm_password;
+$confirm_password = $input_data->confirm_password;
 
-//validate data
-// $username = test_input($username);
-// $password = test_input($password);
-// $confirm_password = test_input($confirm_password);
-// function test_input($data) {
-//   $data = trim($data);
-//   $data = stripslashes($data);
-//   $data = htmlspecialchars($data);
-//   return $data;
-// }
-
-// if ($confirm_password != $password ) {
-//     echo 'Password does not match.';
-// } else {
-//     $password = $confirm_password;
-// }
-
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-// $stmt = $mysqli->prepare("INSERT INTO users (username, password) VALUES ('$username', '$hashed_password')");
-// $stmt->bind_param('ss', $username, $hashed_password);
-// $stmt->execute();
-
-$sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashed_password')";
-
-if(mysqli_query($mysqli, $sql)){
-    echo json_encode(array('success' => true));
+// Validate
+if(empty(trim($username)) || empty(trim($password))){
+    echo json_encode(array('success' => false, 'message' => 'Please fill in all fields.'));
+} elseif(strlen($username) < 5 || strlen($password) < 5) {
+    echo json_encode(array('success' => false, 'message' => 'Username and password must be at least 5 characters long.'));
+} elseif ($password !== $confirm_password) {
+    echo json_encode(array('success' => false, 'message' => 'Passwords do not match.'));
 } else {
-  echo json_encode(array('success' => false, 'message' => 'Error with registration.'));
-}
+// Sanitize
+$username = $mysqli->real_escape_string($username);
 
-$mysqli->close();
+// Hash the password
+$password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+
+// Check if the username already exists in the database
+$stmt = $mysqli->prepare("SELECT id FROM users WHERE username = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+if ($stmt->num_rows() > 0) {
+    echo json_encode(array('success' => false, 'message' => 'Username already exists. Please choose a different username.'));
+} else {
+
+    //Add the new user to the database
+    $stmt = $mysqli->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+    $stmt->bind_param("ss", $username, $password);
+    $stmt->execute();
+    echo 'User registration successful!';
+}
+}
+  
+  $mysqli->close();
 
 ?>

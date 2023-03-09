@@ -1,5 +1,6 @@
 const loginForm = document.querySelector('#login-form');
 loginForm.addEventListener('submit', loginUser);
+const responseDiv = document.querySelector('#response');
 
 async function loginUser(event) {
   event.preventDefault();
@@ -7,8 +8,6 @@ async function loginUser(event) {
   const formData = new FormData(loginForm);
   const username = formData.get('username');
   const password = formData.get('password');
-
-  const responseDiv = document.querySelector('#response');
 
   const response = await fetch('/api/login.php', {
     method: 'POST',
@@ -23,6 +22,6 @@ async function loginUser(event) {
     window.location.href = '../page.php';
   } else { 
     console.log(data.message);
-    responseDiv.textContent = 'Username and email not found.';
+    responseDiv.textContent = data.message;
   }
 }

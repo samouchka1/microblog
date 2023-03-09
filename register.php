@@ -32,7 +32,7 @@
                 <div class="input-area-styles">
                     <input type="submit" value="Register">
                 </div>
-                <div id="response"></div>
+                <div id="response" style="margin-top: 16px; color: red;"></div>
             </form>
             <div style="margin: 10px;">
                 <p style="margin: 0;"> Already a member?</p>

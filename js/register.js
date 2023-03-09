@@ -8,12 +8,13 @@ async function registerUser(event) {
   const formData = new FormData(regForm);
   const username = formData.get('username');
   const password = formData.get('password');
-  const confirmPassword = formData.get('confirm_password');
+  const confirm_password = formData.get('confirm_password');
+  console.log(confirm_password); //test returns correct value
 
   const response = await fetch('/api/register.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password, confirmPassword }),
+    body: JSON.stringify({ username, password, confirm_password }),
   });
 
   const data = await response.json(); 
@@ -23,6 +24,6 @@ async function registerUser(event) {
     window.location.href = '../page.php';
   } else { 
     console.log(data.message);
-    responseDiv.textContent = 'Error registering.';
+    responseDiv.textContent = data.message;
   }
 }
