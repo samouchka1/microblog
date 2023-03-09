@@ -10,7 +10,7 @@ async function loginUser(event) {
 
   const responseDiv = document.querySelector('#response');
 
-  const response = await fetch('/api/auth.php', {
+  const response = await fetch('/api/login.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password }),
