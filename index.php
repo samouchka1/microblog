@@ -1,10 +1,4 @@
-<?php
-
-session_start();
-
-require './config.php';
-
-?>
+<?php require './config.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
