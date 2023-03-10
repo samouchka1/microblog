@@ -15,26 +15,33 @@ if(empty(trim($username)) || empty(trim($password))){
 } elseif ($password !== $confirm_password) {
     echo json_encode(array('success' => false, 'message' => 'Passwords do not match.'));
 } else {
-// Sanitize
-$username = $mysqli->real_escape_string($username);
+    // Sanitize
+    $username = $mysqli->real_escape_string($username);
 
-// Hash the password
-$password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+    // Hash the password
+    $password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
 
-// Check if the username already exists in the database
-$stmt = $mysqli->prepare("SELECT id FROM users WHERE username = ?");
-$stmt->bind_param("s", $username);
-$stmt->execute();
-if ($stmt->num_rows() > 0) {
-    echo json_encode(array('success' => false, 'message' => 'Username already exists. Please choose a different username.'));
-} else {
-
-    //Add the new user to the database
-    $stmt = $mysqli->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-    $stmt->bind_param("ss", $username, $password);
+    // Check if the username already exists in the database
+    $stmt = $mysqli->prepare("SELECT id FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
     $stmt->execute();
-    echo 'User registration successful!';
-}
+    $stmt->store_result(); //this ensures that result is stored before preparing and executing the INSERT statement
+    if ($stmt->num_rows() > 0) {
+        echo json_encode(array('success' => false, 'message' => 'Username already exists. Please choose a different username.'));
+    } else {
+
+        //Add the new user to the database
+        $stmt = $mysqli->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+        if (!$stmt) {
+            die('Error in preparing statement: ' . $mysqli->error);
+        }
+        $stmt->bind_param("ss", $username, $password);
+        if (!$stmt->execute()) {
+            die('Error in executing statement: ' . $stmt->error);
+        }
+        $stmt->execute();
+        echo json_encode(array('success' => true, 'message' => 'User registration successful!'));
+    }
 }
   
   $mysqli->close();

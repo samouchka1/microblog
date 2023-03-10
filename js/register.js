@@ -9,7 +9,6 @@ async function registerUser(event) {
   const username = formData.get('username');
   const password = formData.get('password');
   const confirm_password = formData.get('confirm_password');
-  console.log(confirm_password); //test returns correct value
 
   const response = await fetch('/api/register.php', {
     method: 'POST',
