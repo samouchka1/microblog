@@ -1,10 +1,10 @@
 <?php 
 
     require './config.php';
-    
+
     session_start();
 
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         header("location: index.php");
         exit;
     }
@@ -35,5 +35,6 @@
 
 <?php include './components/posts.php'; ?>
     
+<script src="/js/new_post.js"></script>
 </body>
 </html>

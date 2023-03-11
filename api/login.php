@@ -27,6 +27,8 @@ if($result->num_rows == 1) {
   $hashed_password = $row["password"];
 
   if(password_verify($password, $hashed_password)) {
+    session_start();
+
     $_SESSION["user_id"] = $id;
     $_SESSION["username"] = $username;
     $_SESSION["loggedin"] = true;

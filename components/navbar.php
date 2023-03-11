@@ -5,7 +5,7 @@ if(isset($_SESSION['username'])){
    $username = $_SESSION['username'];
 }
 
-echo <<<EOF
+echo <<<NAVBAR
     <div style="
         display: flex;
         flex-direction: row; 
@@ -27,7 +27,7 @@ echo <<<EOF
             <a href="../logout.php">Logout</a>
         </div>
     </div>
-EOF;
+NAVBAR;
 
 
 ?>
