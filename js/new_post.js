@@ -15,14 +15,14 @@ async function setNewPost(event) {
         body: JSON.stringify({ new_post }),
     });
 
-    const data = await response.json(); 
+    const data = await response.json();
 
     if (data.success) {
     console.log(data.success);
     responseDiv.textContent = 'New post created!';
     setTimeout(() => {
         document.location.reload();
-      }, 1500);      
+      }, 300);      
     } else { 
     console.log(data.message);
     responseDiv.textContent = data.message;

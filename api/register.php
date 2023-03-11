@@ -32,13 +32,7 @@ if(empty(trim($username)) || empty(trim($password))){
 
         //Add the new user to the database
         $stmt = $mysqli->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-        if (!$stmt) {
-            die('Error in preparing statement: ' . $mysqli->error);
-        }
         $stmt->bind_param("ss", $username, $password);
-        if (!$stmt->execute()) {
-            die('Error in executing statement: ' . $stmt->error);
-        }
         $stmt->execute();
         echo json_encode(array('success' => true, 'message' => 'User registration successful!'));
     }

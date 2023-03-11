@@ -8,6 +8,7 @@ if(isset($_SESSION['username'])){
 }
 
 $input_data = json_decode(file_get_contents('php://input'));
+
 $new_post = $input_data->new_post;
 
 if(empty(trim($new_post))){
@@ -18,17 +19,12 @@ if(empty(trim($new_post))){
     // Sanitize
     $new_post = $mysqli->real_escape_string($new_post);
 
-    $timestamp = date("F j, Y, g:i a");
+    $timestamp = (new DateTime())->format('m/d/y h:i');
 
-    // Check if the username already exists in the database
-    $stmt = $mysqli->prepare("INSERT INTO posts (username, post, timestamp) VALUES (?, ?, ?)");if (!$stmt) {
-        die('Error in preparing statement: ' . $mysqli->error);
-    }
+    $stmt = $mysqli->prepare("INSERT INTO posts (username, post, timestamp) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $username, $new_post, $timestamp);
-    if (!$stmt->execute()) {
-        die('Error in executing statement: ' . $stmt->error);
-    }
     $stmt->execute();
+    echo json_encode(array('success' => true, 'message' => 'Message sent!'));
 }
 
 $mysqli->close();
