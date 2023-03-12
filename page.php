@@ -24,17 +24,23 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <title>Microblog - Home</title>
 </head>
 <body>
-
-<?php include './components/navbar.php'; ?>
-
-<div class="divider"></div>
-
-<?php include './components/new_post.php'; ?>
-
-<div class="divider"></div>
-
-<?php include './components/posts.php'; ?>
+    <div class="component-area-styles">
+        <?php include './components/navbar.php'; ?>
+    </div>
+    <div class="component-area-styles">
+        <?php include './components/new_post.php'; ?>
+    </div>
+    <div class="two-column-flex">
+        <div class="component-area-styles">
+            <h3 class="center">All Posts</h3>
+            <?php include './components/posts.php'; ?>
+        </div>
+        <div class="component-area-styles">
+            <h3 class="center">My Posts</h3>
+            <?php include './components/my_posts.php'; ?>
+        </div>
+    </div>
     
-<script src="/js/new_post.js"></script>
+    <script src="/js/new_post.js"></script>
 </body>
 </html>

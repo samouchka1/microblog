@@ -1,7 +1,11 @@
 <?php 
 
+if(isset($_SESSION['username'])){
+    $username = $_SESSION['username'];
+}
+
 // Select data from the "posts" table
-$sql = "SELECT * FROM posts ORDER BY id DESC";
+$sql = "SELECT * FROM posts WHERE username = '$username' ORDER BY id DESC";
 $result = $mysqli->query($sql);
 
 // Check if any posts were found
