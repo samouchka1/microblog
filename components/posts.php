@@ -1,7 +1,7 @@
 <?php 
 
 // Select data from the "posts" table
-$sql = "SELECT * FROM posts ORDER BY id DESC";
+$sql = "SELECT * FROM posts WHERE username != '$username' ORDER BY id DESC";
 $result = $mysqli->query($sql);
 
 // Check if any posts were found
@@ -21,14 +21,7 @@ if ($result->num_rows > 0) {
         $post = trim($post, '"');
 
         echo <<<POSTS
-            <div style="
-                margin: 20px auto; 
-                width: 100%; 
-                max-width: 400px; 
-                padding: 15px;
-                border: solid 1px #000;
-                border-radius: 4px;
-            ">
+            <div class="post-styles">
                 <p style="font-weight: 600;">$username</p>
                 <div style="padding: 15px;">
                     <p>$post</p>

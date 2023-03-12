@@ -20,6 +20,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <link rel="stylesheet" type="text/css" href="/css/page.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/new_post.css">
+    <link rel="stylesheet" type="text/css" href="/css/posts.css">
+
 
     <title>Microblog - Home</title>
 </head>

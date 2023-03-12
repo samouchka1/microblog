@@ -1,6 +1,7 @@
 const newPostForm = document.querySelector('#new-post-form');
 newPostForm.addEventListener('submit', setNewPost);
 const responseDiv = document.querySelector('#response');
+const responseSuccess = document.querySelector('#response-success');
 
 
 async function setNewPost(event) {
@@ -19,7 +20,7 @@ async function setNewPost(event) {
 
     if (data.success) {
     console.log(data.success);
-    responseDiv.textContent = 'New post created!';
+    responseSuccess.textContent = 'New post created!';
     setTimeout(() => {
         document.location.reload();
       }, 300);      

@@ -24,7 +24,7 @@ if(empty(trim($new_post))){
     $stmt = $mysqli->prepare("INSERT INTO posts (username, post, timestamp) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $username, $new_post, $timestamp);
     $stmt->execute();
-    echo json_encode(array('success' => true, 'message' => 'Message sent!'));
+    echo json_encode(array('success' => true, 'message' => 'New post created!'));
 }
 
 $mysqli->close();

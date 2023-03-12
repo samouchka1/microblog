@@ -7,3 +7,9 @@ body {
 .center {
     text-align: center;
 }
+
+.response-styles {
+    margin-top: 16px; 
+    color: red;
+    text-align: center; 
+}

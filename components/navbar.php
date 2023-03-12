@@ -6,15 +6,7 @@ if(isset($_SESSION['username'])){
 }
 
 echo <<<NAVBAR
-    <div style="
-        display: flex;
-        flex-direction: row; 
-        align-items: center; 
-        justify-content: space-between; 
-        margin: 16px auto; 
-        padding: 10px 25px;
-        border: solid 1px black;
-    ">
+    <div class="navbar-styles">
         <div>
             <h3>Microblog</h3>
         </div>
