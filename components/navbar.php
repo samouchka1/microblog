@@ -12,13 +12,22 @@ echo <<<NAVBAR
         </div>
         <div class="navbar-right-panel">
             <div>
-                <p style="font-size: 14px; margin: 0 36px 0 0;">Logged in as </p>
                 <p style="font-weight: 600; margin: 5px 0;">{$username}</p>
+                <div style="display: flex; align-items: center; margin-right: 32px;">
+                    <p style="font-size: 12px; margin: 0;">Logged in</p>
+                    <span class="login-status-span"></span>
+                </div>
             </div>
-            <a href="../logout.php">Logout</a>
+            <div class="center">
+                <a href="../logout.php">
+                    <img src="../images/logout.png" width="25px" alt="logout" />
+                </a>
+                <div class="logout-tooltip">Logout</div>
+            </div>
         </div>
     </div>
 NAVBAR;
 
 
 ?>
+

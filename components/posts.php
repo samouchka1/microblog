@@ -14,6 +14,7 @@ if ($result->num_rows > 0) {
         $timestamp = $row["timestamp"];
 
         $post = json_encode($post);
+        $post_id = $id;
 
         // Decode the JSON string and replace \n with line breaks
         $post = str_replace(array('\r\n', '\r', '\n'), '<br/>', $post);
@@ -26,7 +27,13 @@ if ($result->num_rows > 0) {
                 <div style="padding: 15px;">
                     <p>$post</p>
                 </div>
-                <p style="font-size: 13px;">$timestamp</p>
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <p style="font-size: 13px;">$timestamp</p>
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <p>Like</p>
+                        <a href="post.php?post_id=$post_id">comments</a>
+                    </div>
+                </div>
             </div>
         POSTS;
     }
@@ -34,13 +41,7 @@ if ($result->num_rows > 0) {
 } else {
 
     echo <<<ERROR
-        <div style="
-            margin: 20px auto; 
-            width: 100%; 
-            max-width: 400px; 
-            padding: 15px;
-            border: solid 1px #000;
-        ">
+        <div class="post-styles">
             No posts found.
         </div>
 
@@ -48,8 +49,3 @@ if ($result->num_rows > 0) {
 }
 
 ?>
-
-<div>
-
-
-</div>
