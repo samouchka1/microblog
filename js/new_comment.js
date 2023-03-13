@@ -5,16 +5,18 @@ const responseComment = document.querySelector('#comment-response');
 async function setComment(event) {
     event.preventDefault();
 
-    const formData = new FormData(newPostForm);
+    const formData = new FormData(commentForm);
     const post_id = formData.get('post_id');
+    const commenting_user = formData.get('commenting_user');
     const comment = formData.get('comment');
     console.log(post_id);
+    console.log(commenting_user);
     console.log(comment);
 
     const response = await fetch('/api/new_comment.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ post_id, comment }),
+        body: JSON.stringify({ post_id, commenting_user, comment }),
     });
 
     const data = await response.json();

@@ -9,6 +9,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
+if(isset($_SESSION['username'])){
+    $commenting_user = $_SESSION['username'];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -89,11 +93,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         ">
             <form id="comment-form" class="comment-form-styles">
                 <input type="hidden" name="post_id" value="<?php echo $post_id; ?>">
+                <input type="hidden" name="commenting_user" value="<?php echo $commenting_user; ?>">
                 <textarea style="height: 19px;" placeholder="Comment..." name="comment" rows="1" cols="42"></textarea>
                 <button type="submit" style="margin-top: 10px;">Submit Comment</button>
             </form>
             <div id="comment-response"></div>
         </div>
+    </div>
+
+    <div class="component-area-styles">
+            
     </div>
     <script src="/js/new_comment.js"></script>
 </body>
