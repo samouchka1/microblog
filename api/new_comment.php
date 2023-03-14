@@ -22,6 +22,11 @@ if(empty(trim($comment))){
     $stmt = $mysqli->prepare("INSERT INTO comments (post_id, username, comment, timestamp) VALUES (?, ?, ?, ?)");
     $stmt->bind_param('isss', $post_id, $commenting_user, $comment, $timestamp);
     $stmt->execute();
+
+    // Update comment count
+    $comment_count = $mysqli->query("SELECT COUNT(*) as count FROM comments WHERE post_id=$post_id")->fetch_assoc()['count'];
+    $mysqli->query("UPDATE posts SET comment_count=$comment_count WHERE id=$post_id");
+
     echo json_encode(array('success' => true, 'message' => 'Comment added!'));
 }
 

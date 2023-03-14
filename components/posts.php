@@ -13,6 +13,9 @@ if ($result->num_rows > 0) {
         $post = $row["post"];
         $timestamp = $row["timestamp"];
 
+        // Get the comment count for the post
+        $comment_count = $mysqli->query("SELECT COUNT(*) as count FROM comments WHERE post_id=$id")->fetch_assoc()['count'];
+
         $post = json_encode($post);
         $post_id = $id;
 
@@ -31,7 +34,7 @@ if ($result->num_rows > 0) {
                     <p style="font-size: 13px;">$timestamp</p>
                     <div style="display: flex; align-items: center; gap: 16px;">
                         <p>Like</p>
-                        <a href="page-view-post.php?post_id=$post_id">comments</a>
+                        <a href="page-view-post.php?post_id=$post_id">comments ($comment_count)</a>
                     </div>
                 </div>
             </div>
