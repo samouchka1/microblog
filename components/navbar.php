@@ -8,7 +8,7 @@ if(isset($_SESSION['username'])){
 echo <<<NAVBAR
     <div class="navbar-styles">
         <div>
-            <h3>Microblog</h3>
+            <a href="/page.php" style="text-decoration: none; color: #000;"><h3>Microblog</h3></a>
         </div>
         <div class="navbar-right-panel">
             <div>

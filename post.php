@@ -26,6 +26,7 @@ if(isset($_SESSION['username'])){
     <link rel="stylesheet" type="text/css" href="/css/page.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/posts.css">
+    <link rel="stylesheet" type="text/css" href="/css/comment.css">
 
     <title>Microblog - View Post</title>
 </head>
@@ -97,46 +98,7 @@ if(isset($_SESSION['username'])){
     </div>
 
     <div class="component-area-styles">
-        <?php
-            $sql = "SELECT * FROM comments WHERE post_id = " . $post_id . " ORDER BY timestamp ASC";
-            $result = $mysqli->query($sql);
-
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    $id = $row["id"];
-                    $username = $row["username"];
-                    $comment = $row["comment"];
-                    $timestamp = $row["timestamp"];
-        
-                    $comment = json_encode($comment);
-
-                    // Decode the JSON string and replace \n with line breaks
-                    $comment = str_replace(array('\r\n', '\r', '\n'), '<br/>', $comment);
-                    $comment = str_replace('\\', '', $comment);
-                    $comment = trim($comment, '"');
-
-                    echo <<<COMMENT
-                        <div class="post-styles">
-                            <p style="font-weight: 600;">$username</p>
-                            <div style="padding: 15px;">
-                                <p>$comment</p>
-                            </div>
-                            <div style="display: flex; align-items: center; justify-content: space-between;">
-                                <p style="font-size: 13px;">$timestamp</p>
-                                <p>Like</p>
-                            </div>
-                        </div>
-                    COMMENT;
-                }
-            } else {
-        
-                echo <<<ERROR
-                    <div class="post-styles">
-                        No comments found.
-                    </div>
-                ERROR;
-            }
-        ?>
+        <?php include './components/comments.php';?>
     </div>
     <script src="/js/new_comment.js"></script>
 </body>
