@@ -1,6 +1,7 @@
 const commentForm = document.querySelector('#comment-form');
 commentForm.addEventListener('submit', setComment);
 const responseComment = document.querySelector('#comment-response');
+const responseSuccess = document.querySelector('#response-success');
 
 async function setComment(event) {
     event.preventDefault();
@@ -9,9 +10,6 @@ async function setComment(event) {
     const post_id = formData.get('post_id');
     const commenting_user = formData.get('commenting_user');
     const comment = formData.get('comment');
-    console.log(post_id);
-    console.log(commenting_user);
-    console.log(comment);
 
     const response = await fetch('/api/new_comment.php', {
         method: 'POST',
@@ -23,7 +21,10 @@ async function setComment(event) {
 
     if (data.success) {
     console.log(data.success);
-    // document.location.reload();   
+    responseSuccess.textContent = data.message;
+    setTimeout(() => {
+        document.location.reload();
+      }, 300);
     } else { 
     console.log(data.message);
     responseComment.textContent = data.message;

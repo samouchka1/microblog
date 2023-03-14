@@ -8,8 +8,9 @@ if(isset($_SESSION['username'])){
 }
 
 $input_data = json_decode(file_get_contents('php://input'));
-
 $new_post = $input_data->new_post;
+
+$timestamp = (new DateTime())->format('m/d/y h:i');
 
 if(empty(trim($new_post))){
     echo json_encode(array('success' => false, 'message' => 'Please enter a message.'));
@@ -18,8 +19,6 @@ if(empty(trim($new_post))){
 } else {
     // Sanitize
     $new_post = $mysqli->real_escape_string($new_post);
-
-    $timestamp = (new DateTime())->format('m/d/y h:i');
 
     $stmt = $mysqli->prepare("INSERT INTO posts (username, post, timestamp) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $username, $new_post, $timestamp);

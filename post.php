@@ -24,12 +24,15 @@ if(isset($_SESSION['username'])){
 
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <link rel="stylesheet" type="text/css" href="/css/page.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/posts.css">
 
     <title>Microblog - View Post</title>
 </head>
 <body>
-
+    <div class="component-area-styles">
+        <?php include './components/navbar.php'; ?>
+    </div>
     <div class="component-area-styles">
         <?php 
             $post_id = $_GET['post_id'];
@@ -63,6 +66,20 @@ if(isset($_SESSION['username'])){
                                 <p style="font-size: 13px;">$timestamp</p>
                                 <p>Like</p>
                             </div>
+                            <div style="
+                                margin: 20px auto 15px; 
+                                width: 400px;
+                               
+                                background-color: #fcfcfc; 
+                            ">
+                                <form id="comment-form" class="comment-form-styles">
+                                    <input type="hidden" name="post_id" value="$post_id">
+                                    <input type="hidden" name="commenting_user" value="$commenting_user">
+                                    <textarea style="height: 19px;" placeholder="Comment..." name="comment" rows="1" cols="42"></textarea>
+                                    <button type="submit" style="margin-top: 10px;">Submit Comment</button>
+                                </form>
+                                <div id="comment-response"></div>
+                            </div>
                         </div>
                     POST;
                 }
@@ -80,29 +97,56 @@ if(isset($_SESSION['username'])){
     </div>
 
 
-    <div class="component-area-styles">
-        <!-- add comments -->
-        <div style="
-            margin: 20px auto; 
-            width: 400px;
-            padding: 15px;
-            border: solid 1px #000;
-            border-radius: 4px;
-            box-shadow: 0px 3px 1px -2px #00000033,0px 2px 2px 0px #00000024,0px 1px 5px 0px #0000001f;
-            background-color: #fcfcfc; 
-        ">
-            <form id="comment-form" class="comment-form-styles">
-                <input type="hidden" name="post_id" value="<?php echo $post_id; ?>">
-                <input type="hidden" name="commenting_user" value="<?php echo $commenting_user; ?>">
-                <textarea style="height: 19px;" placeholder="Comment..." name="comment" rows="1" cols="42"></textarea>
-                <button type="submit" style="margin-top: 10px;">Submit Comment</button>
-            </form>
-            <div id="comment-response"></div>
-        </div>
-    </div>
+    <!-- <div class="component-area-styles">
+       
+    </div> -->
 
     <div class="component-area-styles">
+        <?php
+            $sql = "SELECT * FROM comments WHERE post_id = " . $post_id . " ORDER BY timestamp DESC";
+            $result = $mysqli->query($sql);
+
+            if (!$result) {
+                die('Error executing query: ' . $mysqli->error);
+            }
+        
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    $id = $row["id"];
+                    $username = $row["username"];
+                    $comment = $row["comment"];
+                    $timestamp = $row["timestamp"];
+        
+                    $comment = json_encode($comment);
+
+                    // Decode the JSON string and replace \n with line breaks
+                    $comment = str_replace(array('\r\n', '\r', '\n'), '<br/>', $comment);
+                    $comment = str_replace('\\', '', $comment);
+                    $comment = trim($comment, '"');
+
+                    echo <<<COMMENT
+                        <div class="post-styles">
+                            <p style="font-weight: 600;">$username</p>
+                            <div style="padding: 15px;">
+                                <p>$comment</p>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <p style="font-size: 13px;">$timestamp</p>
+                                <p>Like</p>
+                            </div>
+                        </div>
+                    COMMENT;
+                }
+            } else {
+        
+                echo <<<ERROR
+                    <div class="post-styles">
+                        No comments found.
+                    </div>
             
+                ERROR;
+            }
+        ?>
     </div>
     <script src="/js/new_comment.js"></script>
 </body>

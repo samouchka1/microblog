@@ -20,7 +20,7 @@ async function setNewPost(event) {
 
     if (data.success) {
     console.log(data.success);
-    responseSuccess.textContent = 'New post created!';
+    responseSuccess.textContent = data.message;
     setTimeout(() => {
         document.location.reload();
       }, 300);      
