@@ -22,7 +22,7 @@ if ($result->num_rows > 0) {
         $post = trim($post, '"');
 
         echo <<<POSTS
-            <div class="post-styles">
+            <div class="posts-styles">
                 <p style="font-weight: 600;">$username</p>
                 <div style="padding: 15px;">
                     <p>$post</p>
@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
                     <p style="font-size: 13px;">$timestamp</p>
                     <div style="display: flex; align-items: center; gap: 16px;">
                         <p>Like</p>
-                        <a href="post.php?post_id=$post_id">comments</a>
+                        <a href="page-view-post.php?post_id=$post_id">comments</a>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@ if ($result->num_rows > 0) {
 } else {
 
     echo <<<ERROR
-        <div class="post-styles">
+        <div class="posts-styles">
             No posts found.
         </div>
 

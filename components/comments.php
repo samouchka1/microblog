@@ -19,7 +19,7 @@
             echo <<<COMMENT
                 <div class="comment-styles">
                     <p style="font-weight: 600;">$username</p>
-                    <div style="padding: 15px;">
+                    <div style="padding: 5px 15px;">
                         <p>$comment</p>
                     </div>
                     <div style="display: flex; align-items: center; justify-content: space-between;">

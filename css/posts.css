@@ -1,4 +1,4 @@
-.post-styles {
+.posts-styles {
     margin: 20px auto; 
     width: 400px;
     padding: 15px;
@@ -8,14 +8,8 @@
     background-color: #fcfcfc;
 }
 
-.comment-form-styles {
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center;
-}
-
 @media screen and (max-width: 900px) {
-    .post-styles {
+    .posts-styles {
         width: 320px;
     }
 }
