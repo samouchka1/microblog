@@ -1,7 +1,7 @@
 const commentForm = document.querySelector('#comment-form');
 commentForm.addEventListener('submit', setComment);
 const responseComment = document.querySelector('#comment-response');
-const responseSuccess = document.querySelector('#response-success');
+const responseCommentSuccess = document.querySelector('#comment-response-success');
 
 async function setComment(event) {
     event.preventDefault();
@@ -21,7 +21,7 @@ async function setComment(event) {
 
     if (data.success) {
     console.log(data.success);
-    responseSuccess.textContent = data.message;
+    responseCommentSuccess.textContent = data.message;
     setTimeout(() => {
         document.location.reload();
       }, 300);

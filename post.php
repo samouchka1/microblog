@@ -69,7 +69,6 @@ if(isset($_SESSION['username'])){
                             <div style="
                                 margin: 20px auto 15px; 
                                 width: 400px;
-                               
                                 background-color: #fcfcfc; 
                             ">
                                 <form id="comment-form" class="comment-form-styles">
@@ -78,7 +77,8 @@ if(isset($_SESSION['username'])){
                                     <textarea style="height: 19px;" placeholder="Comment..." name="comment" rows="1" cols="42"></textarea>
                                     <button type="submit" style="margin-top: 10px;">Submit Comment</button>
                                 </form>
-                                <div id="comment-response"></div>
+                                <div id="comment-response" class="response-styles"></div>
+                                <div id="comment-response-success" class="response-success-styles"></div>
                             </div>
                         </div>
                     POST;
@@ -96,20 +96,11 @@ if(isset($_SESSION['username'])){
         ?>
     </div>
 
-
-    <!-- <div class="component-area-styles">
-       
-    </div> -->
-
     <div class="component-area-styles">
         <?php
-            $sql = "SELECT * FROM comments WHERE post_id = " . $post_id . " ORDER BY timestamp DESC";
+            $sql = "SELECT * FROM comments WHERE post_id = " . $post_id . " ORDER BY timestamp ASC";
             $result = $mysqli->query($sql);
 
-            if (!$result) {
-                die('Error executing query: ' . $mysqli->error);
-            }
-        
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     $id = $row["id"];
@@ -143,7 +134,6 @@ if(isset($_SESSION['username'])){
                     <div class="post-styles">
                         No comments found.
                     </div>
-            
                 ERROR;
             }
         ?>

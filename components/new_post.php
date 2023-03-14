@@ -4,5 +4,5 @@
         <input type="submit" value="Submit" style="margin-top: 10px;">
     </form>
     <div id="response" class="response-styles"></div>
-    <div id="response-success" style="color: green; text-align: center;"></div>
+    <div id="response-success" class="response-success-styles"></div>
 </div>

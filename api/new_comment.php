@@ -8,19 +8,14 @@ $input_data = json_decode(file_get_contents('php://input'));
 $post_id = $input_data->post_id;
 $commenting_user = $input_data->commenting_user;
 $comment = $input_data->comment;
-var_dump($post_id);
-var_dump($commenting_user);
-var_dump($comment);
 
 $timestamp = (new DateTime())->format('m/d/y h:i');
-var_dump($timestamp);
 
 if(empty(trim($comment))){
     echo json_encode(array('success' => false, 'message' => 'Please enter a message.'));
 } elseif(strlen($comment) < 5) {
     echo json_encode(array('success' => false, 'message' => 'Message must be at least 5 characters long.'));
 } else {
-
     // Sanitize
     $comment = $mysqli->real_escape_string($comment);
 
