@@ -11,6 +11,9 @@
             $username = $row["username"];
             $post = $row["post"];
             $timestamp = $row["timestamp"];
+
+            //get the like count for the post
+            $like_count = $mysqli->query("SELECT COUNT(*) as count FROM likes WHERE post_id=$id")->fetch_assoc()['count'];
     
             $post = json_encode($post);
             // $post_id = $id;
@@ -28,7 +31,10 @@
                     </div>
                     <div style="display: flex; align-items: center; justify-content: space-between;">
                         <p style="font-size: 13px;">$timestamp</p>
-                        <p>Like</p>
+                        <div>
+                            <button class="like-button" data-postid="$post_id">Like</button>
+                            <span class="like-count">$like_count</span>
+                        </div>
                     </div>
                     <div class="comment-form-area-styles">
                         <form id="comment-form" class="comment-form-styles">

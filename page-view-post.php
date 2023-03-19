@@ -38,7 +38,9 @@ if(isset($_SESSION['username'])){
         <?php include './components/post.php'; ?>
         <?php include './components/comments.php';?>
     </div>
+    
     <script src="/js/new_comment.js"></script>
+    <script src="/js/new_like.js"></script>
 </body>
 </html>
 
