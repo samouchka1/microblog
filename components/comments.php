@@ -24,7 +24,6 @@
                     </div>
                     <div style="display: flex; align-items: center; justify-content: space-between;">
                         <p style="font-size: 13px;">$timestamp</p>
-                        <p>Like</p>
                     </div>
                 </div>
             COMMENT;

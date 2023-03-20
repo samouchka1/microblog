@@ -18,3 +18,7 @@ body {
     color: green; 
     text-align: center;
 }
+
+.test-color {
+    color: #67db67;
+}
