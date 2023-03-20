@@ -1,4 +1,5 @@
 <?php 
+
     $post_id = $_GET['post_id'];
 
     // Retrieve the post from the database
@@ -31,8 +32,10 @@
                     </div>
                     <div style="display: flex; align-items: center; justify-content: space-between;">
                         <p style="font-size: 13px;">$timestamp</p>
-                        <div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div id="like-response" style="font-weight: 600; color: red;"></div>
                             <button class="like-button" data-postid="$post_id">Like</button>
+                            <input type="hidden" id="liking-user" value="$liking_user">
                             <span class="like-count">$like_count</span>
                         </div>
                     </div>

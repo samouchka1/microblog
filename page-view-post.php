@@ -11,6 +11,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 if(isset($_SESSION['username'])){
     $commenting_user = $_SESSION['username'];
+    $liking_user = $_SESSION['username'];
 }
 
 ?>

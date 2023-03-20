@@ -5,15 +5,25 @@ require "../config.php";
 
 $data = json_decode(file_get_contents('php://input'));
 $postId = $data->post_id;
+$username = $data->username;
 
-$mysqli->query("INSERT INTO likes (post_id) VALUES ($postId)");
+// Check if the user has already liked the post
+$stmt = $mysqli->prepare("SELECT * FROM likes WHERE post_id = ? AND username = ?");
+$stmt->bind_param("is", $postId, $username);
+$stmt->execute();
+$result = $stmt->get_result();
 
-$likeCount = $mysqli->query("SELECT COUNT(*) as count FROM likes WHERE post_id=$postId")->fetch_assoc()['count'];
+if ($result->num_rows > 0) {
+  echo json_encode(['success' => false, 'message' => '!']);
+} else {
+  $stmt = $mysqli->prepare("INSERT INTO likes (post_id, username) VALUES (?, ?)");
+  $stmt->bind_param("is", $postId, $username);
+  $stmt->execute();
 
-$mysqli->query("UPDATE posts SET like_count=$likeCount WHERE id=$postId");
+  // update like count
+  $likeCount = $mysqli->query("SELECT COUNT(*) as count FROM likes WHERE post_id=$postId")->fetch_assoc()['count'];
 
-echo json_encode([
-  'like_count' => $likeCount
-]);
+  echo json_encode(['success' => true, 'like_count' => $likeCount]);
+}
 
 ?>

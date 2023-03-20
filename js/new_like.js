@@ -1,16 +1,22 @@
 // Get all like buttons on the page
 const likeButtons = document.querySelectorAll('.like-button');
+const likeResponse = document.querySelector('#like-response');
 
 // Add event listener to each like button
 likeButtons.forEach(button => {
   button.addEventListener('click', async (event) => {
 
-    const postId = event.target.getAttribute('data-postid');
+    const post_id = event.target.getAttribute('data-postid');
+    const liking_user = document.getElementById('liking-user').value;
+
+    const formData = new FormData();
+    formData.append('post_id', post_id);
+    formData.append('username', liking_user);
 
     const response = await fetch('/api/new_like.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ post_id: postId }),
+      body: JSON.stringify({ post_id: post_id, username: liking_user }),
     });
 
     const data = await response.json();
@@ -18,11 +24,12 @@ likeButtons.forEach(button => {
     if (data.success) {
       const likeCountElement = document.querySelector('.like-count');
       likeCountElement.textContent = data.likeCount;
-      setTimeout(() => {
-        document.location.reload();
-      }, 300);
     } else {
-      console.error(data.message);
+      console.error('Only one like allower per user.');
+      likeResponse.textContent = data.message;
+      setTimeout(() =>{
+        likeResponse.textContent = '';
+      }, 1300);
     }
   });
 });
