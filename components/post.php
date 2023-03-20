@@ -34,7 +34,7 @@
                         <p style="font-size: 13px;">$timestamp</p>
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <div id="like-response" style="font-weight: 600; color: red;"></div>
-                            <button class="like-button" data-postid="$post_id">Like</button>
+                            <button class="like-button" id="liked-button" data-postid="$post_id">Like</button>
                             <input type="hidden" id="liking-user" value="$liking_user">
                             <span class="like-count">$like_count</span>
                         </div>

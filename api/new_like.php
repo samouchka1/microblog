@@ -21,9 +21,9 @@ if ($result->num_rows > 0) {
   $stmt->execute();
 
   // update like count
-  $likeCount = $mysqli->query("SELECT COUNT(*) as count FROM likes WHERE post_id=$postId")->fetch_assoc()['count'];
+  $like_count = $mysqli->query("SELECT COUNT(*) as count FROM likes WHERE post_id=$postId")->fetch_assoc()['count'];
 
-  echo json_encode(['success' => true, 'like_count' => $likeCount]);
+  echo json_encode(['success' => true, 'like_count' => $like_count]);
 }
 
 ?>

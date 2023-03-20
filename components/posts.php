@@ -36,7 +36,7 @@ if ($result->num_rows > 0) {
                 <div style="display: flex; align-items: center; justify-content: space-between;">
                     <p style="font-size: 13px;">$timestamp</p>
                     <div style="display: flex; align-items: center; gap: 16px;">
-                        <p style="margin-right: -10px;">Likes</p><span class="like-count">$like_count</span>
+                        <a href="page-view-post.php?post_id=$post_id"><p class="like-count">Likes ($like_count)</p></a>
                         <a href="page-view-post.php?post_id=$post_id">comments ($comment_count)</a>
                     </div>
                 </div>
