@@ -16,9 +16,10 @@ function test_input($data) {
   return $data;
 }
 
-$sql = "SELECT id, username, password FROM users WHERE username = '$username'";
-
-$result = mysqli_query($mysqli, $sql);
+$stmt = $mysqli->prepare("SELECT id, username, password FROM users WHERE username = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
 
 if($result->num_rows == 1) {
   $row = $result->fetch_assoc();
