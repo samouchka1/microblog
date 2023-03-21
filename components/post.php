@@ -63,3 +63,11 @@
         ERROR;
     }
 ?>
+
+<!--notes
+
+{if($like_count > 0){
+    <button class="unlike-button"></button>
+}}
+
+-->

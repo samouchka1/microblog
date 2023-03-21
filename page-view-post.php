@@ -41,8 +41,7 @@ if(isset($_SESSION['username'])){
     </div>
     
     <script src="/js/new_comment.js"></script>
-    <script src="/js/new_like.js"></script>
-    <script src="/js/unlike.js"></script>
+    <script src="/js/handle_like.js"></script>
 </body>
 </html>
 
