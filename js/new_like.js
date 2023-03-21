@@ -33,10 +33,16 @@ likeButtons.forEach(button => {
       }, 300);
     } else {
       console.error('Only one like allower per user.');
-      likeResponse.textContent = data.message;
-      setTimeout(() =>{
-        likeResponse.textContent = '';
-      }, 1300);
+      likedButton.style.backgroundColor = '#ff9393';
+          likedButton.style.border = '1px solid gray';
+          likedButton.style.borderRadius = '4px';
+          setTimeout(() =>{
+            document.location.reload();
+          }, 300);
+      // likeResponse.textContent = data.message;
+      // setTimeout(() =>{
+      //   likeResponse.textContent = '';
+      // }, 1300);
     }
   });
 });
