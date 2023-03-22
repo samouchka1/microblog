@@ -22,6 +22,9 @@ if ($result->num_rows > 0) {
         // Get the comment count for the post
         $comment_count = $mysqli->query("SELECT COUNT(*) as count FROM comments WHERE post_id=$id")->fetch_assoc()['count'];
 
+        //get the like count for the post
+        $like_count = $mysqli->query("SELECT COUNT(*) as count FROM likes WHERE post_id=$id")->fetch_assoc()['count'];
+
         $post = json_encode($post);
         $post_id = $id;
 

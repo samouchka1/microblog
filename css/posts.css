@@ -1,6 +1,6 @@
-.posts-styles {
-    margin: 20px auto; 
+.posts-styles { 
     width: 400px;
+    height: fit-content;
     padding: 15px;
     border: solid 1px #000;
     border-radius: 4px;

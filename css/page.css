@@ -2,17 +2,15 @@
     margin: 16px 0;
 }
 
-.two-column-flex {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    gap: 24px;
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: 10px;
 }
 
-
 @media screen and (max-width: 900px) {
-    .two-column-flex {
-        flex-direction: column-reverse;
-        justify-content: center;
+    .grid-container {
+        grid-template-columns: auto;
     }
 }
