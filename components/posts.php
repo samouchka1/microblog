@@ -1,8 +1,10 @@
 <?php 
 
 // Select data from the "posts" table
-$sql = "SELECT * FROM posts WHERE username != '$username' ORDER BY id DESC";
-$result = $mysqli->query($sql);
+$stmt = $mysqli->prepare("SELECT * FROM posts WHERE username != ? ORDER BY id DESC");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
 
 // Check if any posts were found
 if ($result->num_rows > 0) {

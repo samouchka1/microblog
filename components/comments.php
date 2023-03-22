@@ -1,6 +1,9 @@
 <?php
-    $sql = "SELECT * FROM comments WHERE post_id = " . $post_id . " ORDER BY timestamp ASC";
-    $result = $mysqli->query($sql);
+
+    $stmt = $mysqli->prepare("SELECT * FROM comments WHERE post_id = ? ORDER BY timestamp ASC");
+    $stmt->bind_param("i", $post_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {

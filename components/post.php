@@ -3,8 +3,10 @@
     $post_id = $_GET['post_id'];
 
     // Retrieve the post from the database
-    $sql = "SELECT * FROM posts WHERE id = $post_id";
-    $result = $mysqli->query($sql);
+    $stmt = $mysqli->prepare("SELECT * FROM posts WHERE id = ?");
+    $stmt->bind_param("i", $post_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
     
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
@@ -63,11 +65,3 @@
         ERROR;
     }
 ?>
-
-<!--notes
-
-{if($like_count > 0){
-    <button class="unlike-button"></button>
-}}
-
--->
