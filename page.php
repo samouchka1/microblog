@@ -34,9 +34,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <div class="component-area-styles">
         <?php include './components/new_post.php'; ?>
     </div>
-    <div style="margin: auto;">
-        <div class="component-area-styles">
-            <h3 class="center">All Posts</h3>
+    <div class="component-area-styles">
+        <h3 class="center">Posts</h3>
+        <div class="grid-container">
             <?php include './components/posts.php'; ?>
         </div>
     </div>
