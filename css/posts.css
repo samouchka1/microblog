@@ -8,6 +8,17 @@
     background-color: #fcfcfc;
 }
 
+.posts-content {
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #fcfcfc;
+}
+
+.posts-content:hover {
+    background-color: #f3f3f3;
+    transition: .35s;
+}
+
 @media screen and (max-width: 900px) {
     .posts-styles {
         width: 320px;

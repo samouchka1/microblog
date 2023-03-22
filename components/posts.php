@@ -32,9 +32,11 @@ if ($result->num_rows > 0) {
         echo <<<POSTS
             <div class="posts-styles">
                 <p style="font-weight: 600;">$username</p>
-                <div style="padding: 15px;">
-                    <p>$post</p>
-                </div>
+                <a href="page-view-post.php?post_id=$post_id" style="text-decoration: none; color: #000;">
+                    <div class="posts-content">
+                        <p>$post</p>
+                    </div>
+                </a>
                 <div style="display: flex; align-items: center; justify-content: space-between;">
                     <p style="font-size: 13px;">$timestamp</p>
                     <div style="display: flex; align-items: center; gap: 16px;">
