@@ -21,26 +21,20 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <link rel="stylesheet" type="text/css" href="/css/page.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
-    <link rel="stylesheet" type="text/css" href="/css/new_post.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/css/new_post.css"> -->
     <link rel="stylesheet" type="text/css" href="/css/posts.css">
 
-
-    <title>Microblog - Home</title>
+    <title>Microblog - Profile</title>
 </head>
 <body>
     <div class="component-area-styles">
         <?php include './components/navbar.php'; ?>
     </div>
-    <div class="component-area-styles">
-        <?php include './components/new_post.php'; ?>
-    </div>
     <div style="margin: auto;">
         <div class="component-area-styles">
-            <h3 class="center">All Posts</h3>
-            <?php include './components/posts.php'; ?>
+            <h3 class="center">My Posts</h3>
+            <?php include './components/my_posts.php'; ?>
         </div>
     </div>
-    
-    <script src="/js/new_post.js"></script>
 </body>
 </html>
