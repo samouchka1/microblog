@@ -33,6 +33,12 @@ if ($result->num_rows > 0) {
         $post = str_replace(array('\r\n', '\r', '\n'), '<br/>', $post);
         $post = str_replace('\\', '', $post);
         $post = trim($post, '"');
+        
+        if($edited_timestamp === ''){
+            $edited_timestamp = null;
+        } else {
+            $edited_timestamp = 'Last edited: '. $edited_timestamp;
+        }
 
         echo <<<POSTS
             <div class="posts-styles">

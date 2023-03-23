@@ -14,6 +14,7 @@ if ($result->num_rows > 0) {
         $username = $row["username"];
         $post = $row["post"];
         $timestamp = $row["timestamp"];
+        $edited_timestamp = $row["edited_at"];
 
         // Get the comment count for the post
         $comment_count = $mysqli->query("SELECT COUNT(*) as count FROM comments WHERE post_id=$id")->fetch_assoc()['count'];
@@ -29,9 +30,19 @@ if ($result->num_rows > 0) {
         $post = str_replace('\\', '', $post);
         $post = trim($post, '"');
 
+        if($edited_timestamp === ''){
+            $edited_timestamp = null;
+        } else {
+            $edited_timestamp = 'Last edited: '. $edited_timestamp;
+        }
+
         echo <<<POSTS
             <div class="posts-styles">
-                <p style="font-weight: 600;">$username</p>
+                <div style="display: flex; justify-content: space-between;">
+                    <p style="font-weight: 600;">$username</p>
+                    <p style="font-size: 13px;">$edited_timestamp</p>
+                </div>
+
                 <a href="page-view-post.php?post_id=$post_id" style="text-decoration: none; color: #000;">
                     <div class="posts-content">
                         <p>$post</p>
