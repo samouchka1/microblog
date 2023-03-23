@@ -35,6 +35,7 @@ if(isset($_SESSION['username'])){
     <div class="component-area-styles">
         <?php include './components/navbar.php'; ?>
     </div>
+    <h3 class="center">Edit Post</h3>
     <div class="component-area-styles">
         <?php include './components/edit-post.php'; ?>
     </div>
