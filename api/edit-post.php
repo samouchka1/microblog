@@ -24,8 +24,8 @@ if(empty(trim($edited_post))){
     // Sanitize
     $edited_post = $mysqli->real_escape_string($edited_post);
 
-    $stmt = $mysqli->prepare("UPDATE posts SET post = ? WHERE username = ? AND id = ?");
-    $stmt->bind_param("ssi", $edited_post, $username, $post_id);
+    $stmt = $mysqli->prepare("UPDATE posts SET post = ?, edited_at = ? WHERE username = ? AND id = ?");
+    $stmt->bind_param("sssi", $edited_post, $timestamp, $username, $post_id);
     $stmt->execute();
     echo json_encode(array('success' => true, 'message' => 'Post edited!'));
 }
