@@ -9,7 +9,7 @@ if(isset($_SESSION['username'])){
 
 $input_data = json_decode(file_get_contents('php://input'));
 $edited_post = $input_data->edited_post;
-$post_id = $input_data->$post_id;
+$post_id = $input_data->post_id;
 
 $timestamp = (new DateTime())->format('m/d/y h:i');
 
