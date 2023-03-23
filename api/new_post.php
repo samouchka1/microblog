@@ -16,6 +16,9 @@ if(empty(trim($new_post))){
     echo json_encode(array('success' => false, 'message' => 'Please enter a message.'));
 } elseif(strlen($new_post) < 5) {
     echo json_encode(array('success' => false, 'message' => 'Message must be at least 5 characters long.'));
+
+    // limit to 280 characters
+
 } else {
     // Sanitize
     $new_post = $mysqli->real_escape_string($new_post);

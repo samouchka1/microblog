@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require './config.php';
 
@@ -7,6 +7,11 @@ session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: index.php");
     exit;
+}
+
+if(isset($_SESSION['username'])){
+    $commenting_user = $_SESSION['username'];
+    $liking_user = $_SESSION['username'];
 }
 
 ?>
@@ -21,25 +26,20 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <link rel="stylesheet" type="text/css" href="/css/page.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
-    <link rel="stylesheet" type="text/css" href="/css/new_post.css">
-    <link rel="stylesheet" type="text/css" href="/css/posts.css">
+    <link rel="stylesheet" type="text/css" href="/css/post.css">
+    <link rel="stylesheet" type="text/css" href="/css/edit-post.css">
 
-    <title>Microblog - Home</title>
+    <title>Microblog - Edit Post</title>
 </head>
 <body>
     <div class="component-area-styles">
         <?php include './components/navbar.php'; ?>
     </div>
     <div class="component-area-styles">
-        <?php include './components/new_post.php'; ?>
-    </div>
-    <div class="component-area-styles">
-        <h3 class="center">Posts</h3>
-        <div class="grid-container">
-            <?php include './components/posts.php'; ?>
-        </div>
+        <?php include './components/edit-post.php'; ?>
     </div>
     
-    <script src="/js/new_post.js"></script>
+    <script src="/js/edit-post.js"></script>
 </body>
 </html>
+

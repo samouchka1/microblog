@@ -35,7 +35,10 @@ if ($result->num_rows > 0) {
 
         echo <<<POSTS
             <div class="posts-styles">
-                <p style="font-weight: 600;">$username</p>
+                <div style="display: flex; justify-content: space-between;">
+                    <p style="font-weight: 600;">$username</p>
+                    <a href="page-edit-post.php?post_id=$post_id">Edit</a>
+                </div>
                 <a href="page-view-post.php?post_id=$post_id" style="text-decoration: none; color: #000;">
                     <div class="posts-content">
                         <p>$post</p>

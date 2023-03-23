@@ -15,6 +15,9 @@ if(empty(trim($comment))){
     echo json_encode(array('success' => false, 'message' => 'Please enter a message.'));
 } elseif(strlen($comment) < 5) {
     echo json_encode(array('success' => false, 'message' => 'Message must be at least 5 characters long.'));
+
+    // limit to 280 characters
+
 } else {
     // Sanitize
     $comment = $mysqli->real_escape_string($comment);
