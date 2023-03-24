@@ -3,6 +3,10 @@ editPostForm.addEventListener('submit', setEditPost);
 const responseDiv = document.querySelector('#response');
 const responseSuccess = document.querySelector('#response-success');
 
+
+
+
+
 async function setEditPost(event) {
     event.preventDefault();
 

@@ -46,7 +46,7 @@ if ($result->num_rows > 0) {
                     <p style="font-weight: 600;">$username</p>
                     <div style="display: flex; align-items: center; gap: 10px; font-size: 13px;">
                         $edited_timestamp
-                        <a style="font-size: 16px;" href="page-edit-post.php?post_id=$post_id">Edit</a>
+                        <a style="font-size: 16px;" href="page-view-post.php?post_id=$post_id">Edit</a>
                     </div>
                 </div>
                 <a href="page-view-post.php?post_id=$post_id" style="text-decoration: none; color: #000;">
@@ -76,8 +76,3 @@ if ($result->num_rows > 0) {
 }
 
 ?>
-
-<div>
-
-
-</div>
