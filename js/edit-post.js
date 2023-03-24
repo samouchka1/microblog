@@ -4,6 +4,32 @@ const responseDiv = document.querySelector('#response');
 const responseSuccess = document.querySelector('#response-success');
 
 
+const showEditForm = document.querySelector('#edit-form');
+showEditForm.addEventListener('submit', setEditForm);
+
+async function setEditForm(event) {
+    event.preventDefault();
+
+    const formData = new FormData(showEditForm);
+    const form_bool = formData.get('set_edit');
+
+    const response = await fetch('/api/edit-post-set', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ form_bool }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+        console.log(data.success);
+        setTimeout(() => {
+            window.location.href = "/page-view-post.php";
+            }, 300);
+    } else { 
+        console.log(data.message);
+    }
+}
 
 
 
@@ -26,7 +52,7 @@ async function setEditPost(event) {
     console.log(data.success);
     responseSuccess.textContent = data.message;
     setTimeout(() => {
-        window.location.href = "/page-profile.php";
+        window.location.href = "/page-view-post.php";
       }, 300);      
     } else { 
     console.log(data.message);

@@ -20,6 +20,7 @@
             $post = $row["post"];
             $timestamp = $row["timestamp"];
             $edited_timestamp = $row["edited_at"];
+            $set_edit = $row["set_edit"];
 
             //get the like count for the post
             $like_count = $mysqli->query("SELECT COUNT(*) as count FROM likes WHERE post_id=$id")->fetch_assoc()['count'];
@@ -40,27 +41,32 @@
 
             //if user is creator of post, allow edit button
             if($user === $username){
-                $edit_button = <<<BTN
-                    <button style="font-size: 16px;" id="editButton">Edit</button>
-                BTN;
+                $edit_button = <<<FORM
+                    <form id="edit-form">
+                        <input type="hidden" name="set_edit" value="true">
+                        <input type="submit" value="Edit">
+                    </form>
+                FORM;
             } else {
                 $edit_button = null;
             }
 
             // if user selects to edit, show textarea
-            $not_yet_content = <<<EDIT
-                <form id="edit-post-form" class="edit-post-form-area">
-                    <textarea placeholder="Enter message..." rows="4" cols="42" name="edited_post">$post</textarea>
-                    <input type="hidden" name="post_id" value="$post_id">
-                    <input type="submit" value="Save" style="margin-top: 10px;">
-                </form>
-            EDIT;
-            // else
-            $content = <<<CONTENT
-                <div style="padding: 15px;">
-                    <p>$post</p>
-                </div>
-            CONTENT;
+            if($set_edit === 'true') {
+                $content = <<<EDIT
+                    <form id="edit-post-form" class="edit-post-form-area">
+                        <textarea placeholder="Enter message..." rows="4" cols="42" name="edited_post">$post</textarea>
+                        <input type="hidden" name="post_id" value="$post_id">
+                        <input type="submit" value="Save" style="margin-top: 10px;">
+                    </form>
+                EDIT;
+            } else {
+                $content = <<<CONTENT
+                    <div style="padding: 15px;">
+                        <p>$post</p>
+                    </div>
+                CONTENT;
+            }
 
             echo <<<POST
                 <div class="post-styles">
