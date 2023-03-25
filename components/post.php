@@ -26,7 +26,6 @@
             $post = $row["post"];
             $timestamp = $row["timestamp"];
             $edited_timestamp = $row["edited_at"];
-            // $set_edit = $row["set_edit"];
 
             //get the like count for the post
             $like_count = $mysqli->query("SELECT COUNT(*) as count FROM likes WHERE post_id=$id")->fetch_assoc()['count'];
@@ -65,7 +64,7 @@
                 $delete_button = null;
             }
 
-            // if user selects to edit, show textarea
+            // if user selects to edit, show form + textarea
             if($set_edit === 'true' && $user === $username) {
                 $text_or_input = <<<EDIT
                     <form id="edit-post-form" class="edit-post-form-area">
@@ -129,3 +128,17 @@
         ERROR;
     }
 ?>
+
+<!-- buttons
+
+    <input type="hidden" name="post_id" class="post-icon-styles" 
+        style="background-image: url('/images/edit_post.jpg');" 
+        aria-label="edit post">
+
+    <input type="hidden" name="post_id" class="post-icon-styles" 
+        style="background-image: url('/images/delete_post.jpg');" 
+        aria-label="delete post">
+    
+-->
+
+    

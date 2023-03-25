@@ -17,6 +17,7 @@ async function setDeletePost(event) {
 
     if (data.success) {
         console.log(data.success);
+        // alert('Are you sure?')
         setTimeout(() => {
             window.location.href = `/page-profile.php`;
         }, 300);   
