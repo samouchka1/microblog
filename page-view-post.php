@@ -28,6 +28,7 @@ if(isset($_SESSION['username'])){
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/post.css">
     <link rel="stylesheet" type="text/css" href="/css/comment.css">
+    <link rel="stylesheet" type="text/css" href="/css/edit-post.css">
 
     <title>Microblog - View Post</title>
 </head>
@@ -42,6 +43,7 @@ if(isset($_SESSION['username'])){
     
     <script src="/js/new_comment.js"></script>
     <script src="/js/handle_like.js"></script>
+    <script src="/js/edit-post.js"></script>
 </body>
 </html>
 

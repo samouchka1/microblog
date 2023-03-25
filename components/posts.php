@@ -30,6 +30,7 @@ if ($result->num_rows > 0) {
         $post = str_replace('\\', '', $post);
         $post = trim($post, '"');
 
+        //show edited timestamp if post was edited
         if($edited_timestamp === ''){
             $edited_timestamp = null;
         } else {
