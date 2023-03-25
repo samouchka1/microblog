@@ -26,7 +26,6 @@
             $post = $row["post"];
             $timestamp = $row["timestamp"];
             $edited_timestamp = $row["edited_at"];
-            // $set_edit = $row["set_edit"];
 
             //get the like count for the post
             $like_count = $mysqli->query("SELECT COUNT(*) as count FROM likes WHERE post_id=$id")->fetch_assoc()['count'];
@@ -45,22 +44,30 @@
                 $edited_timestamp = 'Last edited: '. $edited_timestamp;
             }
 
-            //if user is creator of post, allow edit button
+            //if user is creator of post, allow edit, delete button
             if($user === $username){
-                $edit_button = <<<FORM
+                $edit_button = <<<EDITBTN
                     <form id="edit-form">
                         <input type="hidden" name="post_id" value="$post_id">
                         <input type="hidden" name="set_edit" value="true">
                         <input type="submit" value="Edit">
                     </form>
-                FORM;
+                EDITBTN;
+                $delete_button = <<<DELBTN
+                    <form id="delete-form">
+                        <input type="hidden" name="post_id" value="$post_id">
+                        <input type="submit" value="Delete">
+                    </form>
+                DELBTN;
             } else {
                 $edit_button = null;
+                $delete_button = null;
             }
 
-            // if user selects to edit, show textarea
+            // if user selects to edit, show form + textarea
             if($set_edit === 'true' && $user === $username) {
-                $content = <<<EDIT
+                $text_or_input = <<<EDIT
+
                     <form id="edit-post-form" class="edit-post-form-area">
                         <textarea placeholder="Enter message..." rows="4" cols="42" name="edited_post">$post</textarea>
                         <input type="hidden" name="post_id" value="$post_id">
@@ -71,7 +78,7 @@
                     <div id="response-success" class="response-success-styles"></div>
                 EDIT;
             } else {
-                $content = <<<CONTENT
+                $text_or_input  = <<<CONTENT
                     <div style="padding: 15px;">
                         <p>$post</p>
                     </div>
@@ -86,9 +93,10 @@
                         <div style="display: flex; align-items: center; gap: 10px; font-size: 13px;">
                             $edited_timestamp
                             $edit_button
+                            $delete_button
                         </div>
                     </div>
-                    $content
+                    $text_or_input 
                     <div style="display: flex; align-items: center; justify-content: space-between;">
                         <p style="font-size: 13px;">$timestamp</p>
                         <div style="display: flex; align-items: center; gap: 10px;">
@@ -121,3 +129,17 @@
         ERROR;
     }
 ?>
+
+<!-- buttons
+
+    <input type="hidden" name="post_id" class="post-icon-styles" 
+        style="background-image: url('/images/edit_post.jpg');" 
+        aria-label="edit post">
+
+    <input type="hidden" name="post_id" class="post-icon-styles" 
+        style="background-image: url('/images/delete_post.jpg');" 
+        aria-label="delete post">
+    
+-->
+
+    

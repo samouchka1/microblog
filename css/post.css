@@ -8,6 +8,18 @@
     background-color: #fcfcfc;
 }
 
+.edit-post-form-area {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.post-icon-styles {
+    background-position: right center; 
+    background-repeat: no-repeat; 
+    padding-right: 30px;
+}
 
 .comment-form-area-styles {
     margin: 20px auto 15px; 
