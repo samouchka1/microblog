@@ -67,6 +67,8 @@
                         <input type="hidden" name="set_edit" value="false">
                         <input type="submit" value="Save" style="margin-top: 10px;">
                     </form>
+                    <div id="response" class="response-styles"></div>
+                    <div id="response-success" class="response-success-styles"></div>
                 EDIT;
             } else {
                 $content = <<<CONTENT

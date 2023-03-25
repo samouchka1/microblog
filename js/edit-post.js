@@ -3,7 +3,6 @@ editPostForm.addEventListener('submit', setEditPost);
 const responseDiv = document.querySelector('#response');
 const responseSuccess = document.querySelector('#response-success');
 
-
 const showEditForm = document.querySelector('#edit-form');
 showEditForm.addEventListener('submit', setEditForm);
 
@@ -12,11 +11,12 @@ async function setEditForm(event) {
 
     const formData = new FormData(showEditForm);
     const form_bool = formData.get('set_edit');
+    const post_id = formData.get('post_id');
 
     const response = await fetch('/api/edit-post-set.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ form_bool }),
+        body: JSON.stringify({ form_bool, post_id }),
     });
 
     const data = await response.json();
@@ -30,8 +30,6 @@ async function setEditForm(event) {
         console.log(data.message);
     }
 }
-
-
 
 async function setEditPost(event) {
     event.preventDefault();
@@ -49,13 +47,13 @@ async function setEditPost(event) {
     const data = await response.json();
 
     if (data.success) {
-    console.log(data.success);
-    // responseSuccess.textContent = data.message;
-    setTimeout(() => {
-        window.location.href = `/page-view-post.php?post_id=${post_id}`;
-      }, 300);      
+        console.log(data.success);
+        responseSuccess.textContent = data.message;
+        setTimeout(() => {
+            window.location.href = `/page-view-post.php?post_id=${post_id}`;
+        }, 300);      
     } else { 
-    console.log(data.message);
-    responseDiv.textContent = data.message;
+        console.log(data.message);
+        responseDiv.textContent = data.message;
     }
 }
