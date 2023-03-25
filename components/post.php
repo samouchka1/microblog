@@ -4,8 +4,14 @@
         $user = $_SESSION['username'];
     }
 
-    //get post id from URL
+    // get post id from URL
     $post_id = $_GET['post_id'];
+
+    if(isset($_GET['set_edit'])){
+        $set_edit = $_GET['set_edit'];
+    } else {
+        $set_edit = null;
+    }
 
     // Retrieve the post from the database
     $stmt = $mysqli->prepare("SELECT * FROM posts WHERE id = ?");
@@ -20,7 +26,7 @@
             $post = $row["post"];
             $timestamp = $row["timestamp"];
             $edited_timestamp = $row["edited_at"];
-            $set_edit = $row["set_edit"];
+            // $set_edit = $row["set_edit"];
 
             //get the like count for the post
             $like_count = $mysqli->query("SELECT COUNT(*) as count FROM likes WHERE post_id=$id")->fetch_assoc()['count'];
@@ -43,6 +49,7 @@
             if($user === $username){
                 $edit_button = <<<FORM
                     <form id="edit-form">
+                        <input type="hidden" name="post_id" value="$post_id">
                         <input type="hidden" name="set_edit" value="true">
                         <input type="submit" value="Edit">
                     </form>
@@ -57,6 +64,7 @@
                     <form id="edit-post-form" class="edit-post-form-area">
                         <textarea placeholder="Enter message..." rows="4" cols="42" name="edited_post">$post</textarea>
                         <input type="hidden" name="post_id" value="$post_id">
+                        <input type="hidden" name="set_edit" value="false">
                         <input type="submit" value="Save" style="margin-top: 10px;">
                     </form>
                 EDIT;
@@ -78,9 +86,7 @@
                             $edit_button
                         </div>
                     </div>
-
                     $content
-
                     <div style="display: flex; align-items: center; justify-content: space-between;">
                         <p style="font-size: 13px;">$timestamp</p>
                         <div style="display: flex; align-items: center; gap: 10px;">

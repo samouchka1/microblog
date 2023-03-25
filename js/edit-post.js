@@ -13,7 +13,7 @@ async function setEditForm(event) {
     const formData = new FormData(showEditForm);
     const form_bool = formData.get('set_edit');
 
-    const response = await fetch('/api/edit-post-set', {
+    const response = await fetch('/api/edit-post-set.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ form_bool }),
@@ -24,8 +24,8 @@ async function setEditForm(event) {
     if (data.success) {
         console.log(data.success);
         setTimeout(() => {
-            window.location.href = "/page-view-post.php";
-            }, 300);
+            document.location.reload();
+        }, 300);
     } else { 
         console.log(data.message);
     }
@@ -50,9 +50,9 @@ async function setEditPost(event) {
 
     if (data.success) {
     console.log(data.success);
-    responseSuccess.textContent = data.message;
+    // responseSuccess.textContent = data.message;
     setTimeout(() => {
-        window.location.href = "/page-view-post.php";
+        window.location.href = `/page-view-post.php?post_id=${post_id}`;
       }, 300);      
     } else { 
     console.log(data.message);

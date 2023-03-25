@@ -1,7 +1,5 @@
 <?php
 
-// session_start();
-
 require "../config.php";
 
 $input_data = json_decode(file_get_contents('php://input'));
