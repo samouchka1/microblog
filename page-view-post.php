@@ -44,6 +44,7 @@ if(isset($_SESSION['username'])){
     <script src="/js/new_comment.js"></script>
     <script src="/js/handle_like.js"></script>
     <script src="/js/edit-post.js"></script>
+    <script src="/js/delete-post.js"></script>
 </body>
 </html>
 

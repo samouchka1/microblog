@@ -45,22 +45,29 @@
                 $edited_timestamp = 'Last edited: '. $edited_timestamp;
             }
 
-            //if user is creator of post, allow edit button
+            //if user is creator of post, allow edit, delete button
             if($user === $username){
-                $edit_button = <<<FORM
+                $edit_button = <<<EDITBTN
                     <form id="edit-form">
                         <input type="hidden" name="post_id" value="$post_id">
                         <input type="hidden" name="set_edit" value="true">
                         <input type="submit" value="Edit">
                     </form>
-                FORM;
+                EDITBTN;
+                $delete_button = <<<DELBTN
+                    <form id="delete-form">
+                        <input type="hidden" name="post_id" value="$post_id">
+                        <input type="submit" value="Delete">
+                    </form>
+                DELBTN;
             } else {
                 $edit_button = null;
+                $delete_button = null;
             }
 
             // if user selects to edit, show textarea
             if($set_edit === 'true' && $user === $username) {
-                $content = <<<EDIT
+                $text_or_input = <<<EDIT
                     <form id="edit-post-form" class="edit-post-form-area">
                         <textarea placeholder="Enter message..." rows="4" cols="42" name="edited_post">$post</textarea>
                         <input type="hidden" name="post_id" value="$post_id">
@@ -71,7 +78,7 @@
                     <div id="response-success" class="response-success-styles"></div>
                 EDIT;
             } else {
-                $content = <<<CONTENT
+                $text_or_input  = <<<CONTENT
                     <div style="padding: 15px;">
                         <p>$post</p>
                     </div>
@@ -86,9 +93,10 @@
                         <div style="display: flex; align-items: center; gap: 10px; font-size: 13px;">
                             $edited_timestamp
                             $edit_button
+                            $delete_button
                         </div>
                     </div>
-                    $content
+                    $text_or_input 
                     <div style="display: flex; align-items: center; justify-content: space-between;">
                         <p style="font-size: 13px;">$timestamp</p>
                         <div style="display: flex; align-items: center; gap: 10px;">
