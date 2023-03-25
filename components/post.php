@@ -67,7 +67,6 @@
             // if user selects to edit, show form + textarea
             if($set_edit === 'true' && $user === $username) {
                 $text_or_input = <<<EDIT
-
                     <form id="edit-post-form" class="edit-post-form-area">
                         <textarea placeholder="Enter message..." rows="4" cols="42" name="edited_post">$post</textarea>
                         <input type="hidden" name="post_id" value="$post_id">

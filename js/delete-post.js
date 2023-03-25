@@ -6,6 +6,7 @@ async function setDeletePost(event) {
 
     const formData = new FormData(deletePostForm);
     const post_id = formData.get('post_id');
+    console.log(post_id);
 
     const response = await fetch('/api/delete-post.php', {
       method: 'POST',
@@ -18,9 +19,9 @@ async function setDeletePost(event) {
     if (data.success) {
         console.log(data.success);
         // alert('Are you sure?')
-        setTimeout(() => {
-            window.location.href = `/page-profile.php`;
-        }, 300);   
+        // setTimeout(() => {
+        //     window.location.href = `/page-profile.php`;
+        // }, 300);   
     } else {
         console.log(data.message);
     }
