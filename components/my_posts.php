@@ -48,8 +48,7 @@ if ($result->num_rows > 0) {
                     <div style="display: flex; align-items: center; gap: 10px; font-size: 13px;">
                         $edited_timestamp
                         <div style="font-size: 16px;">
-                            <a style="margin-right: 10px;" href="page-view-post.php?post_id=$post_id">Edit</a>
-                            <a href="page-view-post.php?post_id=$post_id">Delete</a>
+                            <a href="page-view-post.php?post_id=$post_id">Manage</a>
                         </div>
                     </div>
                 </div>

@@ -76,6 +76,15 @@
                     <div id="response" class="response-styles"></div>
                     <div id="response-success" class="response-success-styles"></div>
                 EDIT;
+
+                $edit_button = <<<CANCEL
+                    <form id="edit-form-cancel">
+                        <input type="hidden" name="post_id" value="$post_id">
+                        <input type="hidden" name="set_edit" value="false">
+                        <input type="submit" value="Cancel">
+                    </form>
+                CANCEL;
+
             } else {
                 $text_or_input  = <<<CONTENT
                     <div style="padding: 15px;">
